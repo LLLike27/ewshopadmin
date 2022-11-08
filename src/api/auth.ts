@@ -1,4 +1,9 @@
 import request from "@/utils/request";
+/**
+ ** @author：LLLike27
+ ** @description：登录
+ ** @date 2022-11-07 17:32
+ */
 //登录接口
 export function login(data) {
   return request({

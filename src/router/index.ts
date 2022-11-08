@@ -13,7 +13,8 @@ Object.keys(modules).forEach((key) => {
 const routes = [
   {
     path: "/",
-    // 默认指向主控太
+    // redirect: "/Login",
+    // token存在 默认指向主控太
     redirect: "/dashboard/console",
     // component: Home
   },

@@ -15,7 +15,6 @@ import { routeModuleList } from "@/router";
 import { generatorMenu } from "@/utils"
 import { useRoute, useRouter } from "vue-router";
 
-
 const defaultKey = ref("");
 onMounted(() => {
     const route = useRoute();
@@ -23,8 +22,7 @@ onMounted(() => {
     const routeKey = route.name;
     //页面刷新匹配当前的路由
     if (typeof routeKey === "string") {
-        console.log(routeKey);
-
+        // console.log(routeKey);
         defaultKey.value = routeKey;
     }
 })
@@ -35,8 +33,7 @@ const menuOptions = generatorMenu(routeModuleList)
 //点击跳转
 const router = useRouter()
 const handleUpdateValue = (key: any) => {
-    // console.log(key);
-
+    console.log(key);
     defaultKey.value = key
     router.push({ name: key })
 }

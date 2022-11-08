@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: "list",
+        path: "list1",
         name: `${routeName}_list1`,
         meta: {
           title: "用户列表1",
@@ -36,13 +36,13 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/user/index1.vue"),
       },
       {
-        path: "list",
+        path: "list2",
         name: `${routeName}_list2`,
         meta: {
           title: "用户列表2",
           // icon: renderIcon(Body),
         },
-        component: () => import("@/views/user/index2.vue"),
+        component: () => import("@/views/user/list2/index2.vue"),
       },
     ],
   },

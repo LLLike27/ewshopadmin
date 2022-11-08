@@ -40,7 +40,7 @@ window.$message = useMessage();
     .text-center {
         // height: 50px;
         // line-height: 50px;
-        margin-top: 40px;
+        // margin-top: 40px;
     }
 }
 </style>
