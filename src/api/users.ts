@@ -27,7 +27,7 @@ export function getUserInfo(userId: any) {
   });
 }
 //更新用户信息
-export function updateUserInfo(userId: any, data: string) {
+export function updateUserInfo(userId: any, data: Object) {
   return request({
     url: `/api/admin/users/${userId}`,
     method: "PUT",

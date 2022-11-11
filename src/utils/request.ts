@@ -4,12 +4,22 @@
  ** @date 2022-11-06 11:19
  */
 // 1.引入axios依赖包
-import axios from "axios";
+import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 // 2.axios创建request实例对象
 const request = axios.create({
   baseURL: "https://api.shop.eduwork.cn/", // 管理后台要使用的接口的基地址
   timeout: 5000, // 超时时间
 });
+
+// 处理  类型“AxiosResponse<any, any>”上不存在属性“name”。ts脑壳疼！关键一步。
+declare module "axios" {
+  interface AxiosResponse<T = any> {
+    name: "";
+    email: "";
+    // 这里追加你的参数
+  }
+  export function create(config?: AxiosRequestConfig): AxiosInstance;
+}
 
 const win: any = window;
 //3.添加请求拦截器，请求发出之前触发的

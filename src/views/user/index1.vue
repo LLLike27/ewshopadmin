@@ -35,7 +35,7 @@
         <div class="text-xl px-6 py-4 flex">
           <span>用户列表</span>
           <span class="ml-auto">
-            <NButton type="info">+ 新建</NButton>
+            <NButton type="info" @click="showAddModal = true">+ 新建</NButton>
           </span>
         </div>
         <div>
@@ -55,12 +55,26 @@
           </div>
         </div>
       </div>
+      <AddUser
+        :showAddModal="showAddModal"
+        @checkShowAddModal="checkShowAddModal"
+        @reloadTable="reload"
+      ></AddUser>
+      <EditUser
+        v-if="showEditModal"
+        :userId="userId"
+        :showEditModal="showEditModal"
+        @checkShowEditModal="checkShowEditModal"
+        @reloadTable="reload"
+      ></EditUser>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, h, onMounted } from "vue";
+import AddUser from "./components/AddUser.vue";
+import EditUser from "./components/EditUser.vue";
 import { NButton, NAvatar, NSwitch, useMessage, useLoadingBar } from "naive-ui";
 import { users, setUserLock } from "@/api/users";
 const loading = ref(true);
@@ -75,6 +89,26 @@ const page = ref(1);
 const totalPages = ref(0);
 const message = useMessage();
 const loadingBar = useLoadingBar();
+const userId = ref(0);
+// 添加模态框显示状态
+const showAddModal = ref(false);
+const showEditModal = ref(false);
+
+const checkShowAddModal = (status: boolean) => {
+  showAddModal.value = status;
+};
+const checkShowEditModal = (status: boolean) => {
+  showEditModal.value = status;
+};
+
+//页面刷新 重新请求数据
+const reload = () => {
+  getUsersListData({
+    current: page.value,
+    name: formValue.value.name,
+    email: formValue.value.email,
+  });
+};
 const columns: any = [
   {
     title: "头像",
@@ -133,6 +167,8 @@ const columns: any = [
           strong: true,
           onClick: () => {
             console.log(row);
+            userId.value = row.id;
+            showEditModal.value = true;
           },
         },
         "编辑"
