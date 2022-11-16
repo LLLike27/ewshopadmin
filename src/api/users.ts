@@ -4,6 +4,7 @@ import request from "@/utils/request";
  ** @description：用户管理
  ** @date 2022-11-07 17:31
  */
+
 //获取用户列表
 export function users(params: any) {
   return request({
@@ -13,21 +14,21 @@ export function users(params: any) {
   });
 }
 //禁用和启用
-export function setUserLock(userId: any) {
+export function setUserLock(userId: number) {
   return request({
     url: `/api/admin/users/${userId}/lock`,
     method: "PATCH",
   });
 }
 //获取用户信息
-export function getUserInfo(userId: any) {
+export function getUserInfo(userId: number) {
   return request({
     url: `/api/admin/users/${userId}`,
     method: "GET",
   });
 }
 //更新用户信息
-export function updateUserInfo(userId: any, data: Object) {
+export function updateUserInfo(userId: number, data: object) {
   return request({
     url: `/api/admin/users/${userId}`,
     method: "PUT",
@@ -35,7 +36,7 @@ export function updateUserInfo(userId: any, data: Object) {
   });
 }
 //添加用户
-export function addUser(data) {
+export function addUser(data: string) {
   return request({
     url: `/api/admin/users`,
     method: "POST",

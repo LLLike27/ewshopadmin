@@ -57,14 +57,14 @@
       </div>
       <AddUser
         :showAddModal="showAddModal"
-        @checkShowAddModal="checkShowAddModal"
+        @checkShowModal="checkShowAddModal"
         @reloadTable="reload"
       ></AddUser>
       <EditUser
         v-if="showEditModal"
         :userId="userId"
         :showEditModal="showEditModal"
-        @checkShowEditModal="checkShowEditModal"
+        @checkShowModal="checkShowEditModal"
         @reloadTable="reload"
       ></EditUser>
     </div>

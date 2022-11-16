@@ -6,7 +6,7 @@
   >
     <n-card
       style="width: 600px"
-      title="添加用户"
+      title="添加分类"
       :bordered="false"
       size="huge"
       role="dialog"
@@ -17,20 +17,8 @@
       </template>
       <n-form ref="formRef" :model="model" :rules="rules">
         <n-form-item path="name">
-          <div class="title">姓名：</div>
-          <n-input v-model:value="model.name" placeholder="请输入姓名" />
-        </n-form-item>
-        <n-form-item path="email">
-          <div class="title">邮箱：</div>
-          <n-input v-model:value="model.email" placeholder="请输入邮箱" />
-        </n-form-item>
-        <n-form-item path="password">
-          <div class="title">密码：</div>
-          <n-input
-            v-model:value="model.password"
-            type="password"
-            placeholder="请输入密码"
-          />
+          <div class="title">分类名称：</div>
+          <n-input v-model:value="model.name" placeholder="请输入名称" />
         </n-form-item>
         <n-row :gutter="[0, 24]">
           <n-col :span="24">
@@ -46,7 +34,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { addUser } from "@/api/users";
+import { addCategory } from "@/api/category";
 const props = defineProps({
   showAddModal: { type: Boolean, default: false },
 });
@@ -55,26 +43,12 @@ const emit = defineEmits(["checkShowModal", "reloadTable"]);
 
 const model: any = ref({
   name: null,
-  email: null,
-  password: null,
 });
 const rules = {
   name: [
     {
       required: true,
-      message: "请输入姓名",
-    },
-  ],
-  email: [
-    {
-      required: true,
-      message: "请输入邮箱",
-    },
-  ],
-  password: [
-    {
-      required: true,
-      message: "请输入密码",
+      message: "请输入名称",
     },
   ],
 };
@@ -88,8 +62,8 @@ const userSubmit = (e: any) => {
     if (errors) {
       console.log(errors);
     } else {
-      addUser(model.value).then((_res) => {
-        emit("checkShowModal", false); //关闭模态框
+      addCategory(model.value).then((_res) => {
+        emit("checkShowModal", false);
         emit("reloadTable"); //子组件触发事件  父组件 页面刷新
       });
     }

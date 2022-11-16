@@ -4,8 +4,9 @@ import request from "@/utils/request";
  ** @description：登录
  ** @date 2022-11-07 17:32
  */
+
 //登录接口
-export function login(data) {
+export function login(data: any) {
   return request({
     url: "/api/auth/login",
     method: "POST",

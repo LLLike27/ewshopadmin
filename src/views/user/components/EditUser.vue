@@ -1,7 +1,7 @@
 <template>
   <n-modal
     v-model:show="props.showEditModal"
-    @update:show="$emit('checkShowEditModal', false)"
+    @update:show="$emit('checkShowModal', false)"
     :mask-closable="true"
   >
     <n-card
@@ -13,7 +13,7 @@
       aria-modal="true"
     >
       <template #header-extra>
-        <n-button type="error" @click="$emit('checkShowEditModal', false)">X</n-button>
+        <n-button type="error" @click="$emit('checkShowModal', false)">X</n-button>
       </template>
       <n-form v-if="showForm" ref="formRef" :model="model" :rules="rules">
         <n-form-item path="name">
@@ -54,7 +54,7 @@ const props = defineProps({
   },
 });
 //定义两个自定义emit事件
-const emit = defineEmits(["checkShowEditModal", "reloadTable"]);
+const emit = defineEmits(["checkShowModal", "reloadTable"]);
 
 const model = ref({
   name: "",
@@ -86,7 +86,7 @@ const updateSubmit = (e: any) => {
     } else {
       updateUserInfo(props.userId, model.value).then((_res) => {
         message.success("修改成功");
-        emit("checkShowEditModal", false);
+        emit("checkShowModal", false);
         emit("reloadTable");
       });
     }

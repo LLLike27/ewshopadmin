@@ -8,6 +8,8 @@ import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 // 2.axios创建request实例对象
 const request = axios.create({
   baseURL: "https://api.shop.eduwork.cn/", // 管理后台要使用的接口的基地址
+  // baseURL: "https://shop.api.eduwork.cn/", // 管理后台要使用的接口的基地址
+  // baseURL: "http://apishop.test/", // 管理后台要使用的接口的基地址
   timeout: 5000, // 超时时间
 });
 
@@ -16,6 +18,10 @@ declare module "axios" {
   interface AxiosResponse<T = any> {
     name: "";
     email: "";
+    accessid: "";
+    policy: "";
+    signature: "";
+    host: "";
     // 这里追加你的参数
   }
   export function create(config?: AxiosRequestConfig): AxiosInstance;
